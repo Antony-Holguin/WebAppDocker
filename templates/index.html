@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">Análisis de Imágenes con Imagga</h1>
+        <p class="lead">Selecciona una imagen para analizarla y obtener sus tags con inteligencia artificial.</p>
+    </div>
+</div>
+
+<div class="row">
+    {% for image in images %}
+    <div class="col-md-4 mb-4">
+        <div class="card image-card h-100">
+            <img src="{{ image.url }}" class="card-img-top" alt="{{ image.title }}" style="height: 250px; object-fit: cover;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ image.title }}</h5>
+                <p class="card-text text-muted small">ID: {{ image.id }}</p>
+                <div class="mt-auto">
+                    <button 
+                        id="btn-{{ image.id }}" 
+                        class="btn btn-primary w-100 mb-2" 
+                        onclick="analyzeImage({{ image.id }})">
+                        Analizar
+                    </button>
+                    <div id="result-{{ image.id }}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
